@@ -1,0 +1,19 @@
+td {
+    padding: 5px 10px;
+    border: 1px solid #333;
+}
+.new-product{
+    margin-bottom: 30px;
+}
+.error {
+    border: 3px solid red;
+}
+#update-record {
+    display: none;
+}
+#update-record.show {
+    display: block;
+}
+.description {
+    margin-top: 40px;
+}

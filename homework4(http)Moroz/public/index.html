@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="style.css">
     <script src="jquery.js"></script>
     <script src="q.js"></script>
     <script src="script.js"></script>
@@ -17,6 +18,17 @@
         <input id="price"  placeholder="Product price" type="text">
         <input id="quantity" type="text" placeholder="Product quantity">
         <input id="button" type="button" value="Add product">
+    </div>
+    <div class="products-wrapper">
+        <table id="products">
+            <tr class="product-info">
+                <td class="product-id">Product_ID</td>
+                <td class="product-name">Product_name</td>
+                <td class="product-price">Product_price</td>
+                <td class="product-quantity">Product_quantity</td>
+                <!--<td class="update-product-info"><input type="button" value="Update"/></td>-->
+            </tr>
+        </table>
     </div>
 </body>
 </html>

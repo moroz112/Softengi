@@ -20,7 +20,12 @@ app.listen(8080, function(){
 
 app.post("/insert", function(req,res){
    fs.open('goods.json','a+', function(){
-   fs.writeFile("goods.json", JSON.stringify(req.body) + fs.readFileSync("goods.json"));
+       var obj = fs.readFileSync("goods.json");
+       if (obj) {
+           obj = JSON.parse(obj);
+           obj.push(req.body);
+       }
+   fs.writeFile("goods.json", JSON.stringify(obj));
    res.send("done");
    });
 
@@ -31,5 +36,15 @@ app.post("/select", function(req, res) {
     }
     else {
         res.send("Not found goods");
+    }
+});
+app.post("/delete", function(req,res){
+    if(fs.existsSync("goods.json")) {
+        var obj = fs.readFileSync("goods.json").toString();
+        if(obj) {
+            obj = JSON.parse(obj);
+
+        }
+        res.send(obj);
     }
 });
