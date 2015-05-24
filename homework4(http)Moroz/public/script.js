@@ -49,6 +49,14 @@ Product.prototype.drawFunc = function(productIdValue,productNameValue,productPri
     productInfo.appendChild(productUpdateCurrentRecord);
     fragment.appendChild(productInfo);
     products.appendChild(fragment);
+    var deleteButtons = document.getElementsByClassName('delete');
+    for(var i =0;i<deleteButtons.length;i++) {
+        var delButton = deleteButtons[i];
+        delButton.addEventListener('click',function(){
+            console.log(this.parentNode.parentNode.firstChild.textContent);
+            product.deleteData('POST',this.parentNode.parentNode.firstChild.textContent);
+        });
+    }
 };
 Product.prototype.selectData = function(method) {
     var deferer = Q.defer();
@@ -65,12 +73,12 @@ Product.prototype.selectData = function(method) {
     });
     return deferer.promise;
 };
-Product.prototype.deleteData = function(method){
+Product.prototype.deleteData = function(method,id){
     $.ajax({
         url:"delete",
         method: method,
         data: {
-            id:10
+            id:id
         },
         success: function(result) {
             console.log('delete success',result);
@@ -83,7 +91,6 @@ Product.prototype.deleteData = function(method){
 };
 var product = new Product();
 var select = product.selectData('POST');
-product.deleteData('POST');
 select.then(function(result){
     console.log('select success result',JSON.parse(result));
     var result = JSON.parse(result);
@@ -92,7 +99,6 @@ select.then(function(result){
         product.drawFunc(result[i].id,result[i].name,result[i].price,result[i].quantity);
     }
 }).done();
-//var insert = product.insertData('POST');
 
 
 $(function(){
