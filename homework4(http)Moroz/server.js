@@ -19,8 +19,11 @@ app.listen(8080, function(){
 });
 
 app.post("/insert", function(req,res){
-   fs.write("goods.json", JSON.stringify(req));
-    res.send("done");
+   fs.open('goods.json','a+', function(){
+   fs.writeFile("goods.json", JSON.stringify(req.body) + fs.readFileSync("goods.json"));
+   res.send("done");
+   });
+
 });
 app.post("/select", function(req, res) {
     if (fs.existsSync("goods.json")) {
