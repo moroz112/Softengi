@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>hw4</title>
+    <meta charset="UTF-8">
+    <script src="db.js"></script>
+    <script src="interface.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--
+<div id="car-templ" style="display: none;"><div>
+        <div class="make"></div>
+        <div class="model"></div>
+    </div>
+</div>-->
+
+<h1>Home work 4</h1>
+
+<div class="container">
+    <div id="carlist"></div>
+    <div id="loader"><img src="715.GIF"></div>
+</div>
+
+<h3 style="cursor:pointer; margin-top:100px;" onclick="addSomeCars()">add some cars</h3>
+
+
+
+<script>
+
+    function addSomeCars() {
+        addCar("mazda", "6", 1996);
+        addCar("mazda", "6", 2007);
+        addCar("mazda", "mx-5", 2006);
+        addCar("mazda", "2", 2010);
+        addCar("VW", "golf", 2010);
+        addCar("ford", "focus", 2012);
+        addCar("mazda", "cx-9", 2011);
+        addCar("toyota", "corolla", 2015);
+        addCar("toyota", "auris", 2014);
+        addCar("mazda", "2", 2015);
+        addCar("vw", "polo", 2014);
+        addCar("vw", "golf", 2014);
+        addCar("fiat", "500", 2015);
+        drawCars();
+    }
+
+    drawCars();
+
+</script>
+</body>
+</html>

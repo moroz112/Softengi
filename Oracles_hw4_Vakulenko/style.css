@@ -1,0 +1,53 @@
+.container{
+    position: relative;
+}
+#carlist > div > span{
+    cursor: pointer;
+    padding: 0 5px;
+    font-size: 20px;
+}
+#carlist > div > span:first-of-type {
+    color:#FF1800;
+}
+#carlist > div > span:last-of-type {
+    color:#00c12b;
+}
+
+#carlist > div:last-child{
+    margin-top:30px;
+}
+
+
+#carlist > div > input:nth-child(1){
+    width: 30px;
+}
+#carlist > div > input:nth-child(4){
+    width: 90px;
+}
+
+#carlist input {
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin:3px;
+    padding: 3px;
+}
+#carlist input.invalid{
+    border:1px solid #FF1800;
+}
+
+#loader {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgba(168,168,168,.5);
+    text-align: center;
+}
+#loader > img {
+    margin-top: 5%;
+}
+#loader.show{
+    display: block;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="new-product">
+        <input id="id" placeholder="Product Id" type="text">
+        <input id="name" placeholder="Product name" type="text">
+        <input id="price"  placeholder="Product price" type="text">
+        <input id="quantity" type="text" placeholder="Product quantity">
+        <input id="button" type="button" value="Add product">
+    </div>
+    <div class="products-wrapper">
+        <table id="products">
+            <tr class="product-info">
+                <td class="product-id">Product_ID</td>
+                <td class="product-name">Product_name</td>
+                <td class="product-price">Product_price</td>
+                <td class="product-quantity">Product_quantity</td>
+                <!--<td class="update-product-info"><input type="button" value="Update"/></td>-->
+            </tr>
+        </table>
+    </div>
+    <div id="update-record" class="update-record">
+        <input id="idNew" placeholder="Product Id" type="text">
+        <input id="nameNew" placeholder="Product name" type="text">
+        <input id="priceNew"  placeholder="Product price" type="text">
+        <input id="quantityNew" type="text" placeholder="Product quantity">
+    </div>
+    <div class="description">
+        Что бы обновить запись кликните на кнопку "show updating form"</br>
+        После заполнения новых полей нажмите кнопку "update this record" напротив записи,</br>
+        которую хотите обновить.
+    </div>
+</body>
+</html>

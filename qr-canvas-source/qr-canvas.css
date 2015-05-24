@@ -1,0 +1,8 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+#cnv {
+	width: 500px;
+	height: 500px;
+}

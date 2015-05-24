@@ -1,0 +1,14 @@
+body {
+    padding: 20px 8px 8px 10px;
+}
+.cell {
+    border: 1px solid #000;
+    padding: 5px;
+}
+
+#content {
+    background-color: #eee;
+}
+.error {
+    border: 2px solid red;
+}
