@@ -52,6 +52,5 @@ app.post("/delete", function(req,res){
                 res.send('suchk');
             }
         }
-        //res.send(obj);
     }
 });
