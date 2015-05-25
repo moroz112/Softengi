@@ -1,5 +1,25 @@
 function Product() {
 }
+Product.prototype.updateData = function(method,id,name,price,quantity,idUpdate) {
+  //var deferer = Q.defer();
+    $.ajax({
+        url: "update",
+        method:method,
+        data: {
+            id: id,
+            name: name,
+            price: price,
+            quantity: quantity,
+            idUpdate: idUpdate
+        },
+        success: function(result) {
+            console.log('success update result',result);
+        },
+        error: function(result) {
+            console.log('error update result', result);
+        }
+    })
+};
 Product.prototype.insertData = function(method,arr) {
     this.action = "insert";
     var deferer = Q.defer();
@@ -49,11 +69,32 @@ Product.prototype.drawFunc = function(productIdValue,productNameValue,productPri
     productInfo.appendChild(productUpdateCurrentRecord);
     fragment.appendChild(productInfo);
     products.appendChild(fragment);
+    var updateRecordBlock = document.getElementById('update-record');
+    var updateButtons = document.getElementsByClassName('update');
+    var updateRecordButtons = document.getElementsByClassName('update-record');
     var deleteButtons = document.getElementsByClassName('delete');
-    for(var i =0;i<deleteButtons.length;i++) {
-        var delButton = deleteButtons[i];
-        delButton.addEventListener('click',function(){
+    for(var k=0;k<updateRecordButtons.length;k++){
+        var upRecordButton = updateRecordButtons[k];
+        upRecordButton.addEventListener('click', function(){
+            var idNew = document.getElementById('idNew');
+            var nameNew = document.getElementById('nameNew');
+            var priceNew = document.getElementById('priceNew');
+            var quantityNew = document.getElementById('quantityNew');
             console.log(this.parentNode.parentNode.firstChild.textContent);
+            product.updateData('POST',
+                idNew.value,nameNew.value,priceNew.value,quantityNew.value,this.parentNode.parentNode.firstChild.textContent);
+        });
+
+    }
+    for(var j = 0; j<updateButtons.length;j++) {
+        var upButton = updateButtons[j];
+        upButton.addEventListener('click', function(){
+            updateRecordBlock.className = 'show';
+        });
+    }
+        for(var i =0;i<deleteButtons.length;i++) {
+            var delButton = deleteButtons[i];
+        delButton.addEventListener('click',function(){
             product.deleteData('POST',this.parentNode.parentNode.firstChild.textContent);
         });
     }
@@ -114,4 +155,6 @@ $(function(){
             console.log('insert success',result);
         }).done();
     });
+    var updateButtons = document.getElementsByClassName('update');
+    console.log(updateButtons);
 });
