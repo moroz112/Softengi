@@ -24,7 +24,7 @@ app.post("/update",function(req,res){
 
        for(var z=0;z<obj.length;z++) {
            if(parseInt(req.body.idUpdate) == parseInt(obj[z].id)) {
-               //obj.splice(i,1,{id:req.body.id,name:req.body.namee,price: req.body.price,quantity:req.body.quantity});
+               obj.splice(z,1,{id:req.body.id,name:req.body.name,price: req.body.price,quantity:req.body.quantity});
                fs.writeFile("goods.json", JSON.stringify(obj));
                res.send(obj);
            }

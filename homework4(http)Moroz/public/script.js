@@ -69,35 +69,6 @@ Product.prototype.drawFunc = function(productIdValue,productNameValue,productPri
     productInfo.appendChild(productUpdateCurrentRecord);
     fragment.appendChild(productInfo);
     products.appendChild(fragment);
-    var updateRecordBlock = document.getElementById('update-record');
-    var updateButtons = document.getElementsByClassName('update');
-    var updateRecordButtons = document.getElementsByClassName('update-record');
-    var deleteButtons = document.getElementsByClassName('delete');
-    for(var k=0;k<updateRecordButtons.length;k++){
-        var upRecordButton = updateRecordButtons[k];
-        upRecordButton.addEventListener('click', function(){
-            var idNew = document.getElementById('idNew');
-            var nameNew = document.getElementById('nameNew');
-            var priceNew = document.getElementById('priceNew');
-            var quantityNew = document.getElementById('quantityNew');
-            console.log(this.parentNode.parentNode.firstChild.textContent);
-            product.updateData('POST',
-                idNew.value,nameNew.value,priceNew.value,quantityNew.value,this.parentNode.parentNode.firstChild.textContent);
-        });
-
-    }
-    for(var j = 0; j<updateButtons.length;j++) {
-        var upButton = updateButtons[j];
-        upButton.addEventListener('click', function(){
-            updateRecordBlock.className = 'show';
-        });
-    }
-        for(var i =0;i<deleteButtons.length;i++) {
-            var delButton = deleteButtons[i];
-        delButton.addEventListener('click',function(){
-            product.deleteData('POST',this.parentNode.parentNode.firstChild.textContent);
-        });
-    }
 };
 Product.prototype.selectData = function(method) {
     var deferer = Q.defer();
@@ -143,6 +114,26 @@ select.then(function(result){
 
 
 $(function(){
+    var productInfo = $('#products');
+    productInfo.on('click','.update-record',function(){
+        var idNew = document.getElementById('idNew');
+        var nameNew = document.getElementById('nameNew');
+        var priceNew = document.getElementById('priceNew');
+        var quantityNew = document.getElementById('quantityNew');
+        console.log(this.parentNode.parentNode.firstChild.textContent);
+        product.updateData('POST',
+            idNew.value,nameNew.value,priceNew.value,quantityNew.value,this.parentNode.parentNode.firstChild.textContent);
+        console.log('update-record front end');
+    });
+    productInfo.on('click','.update',function(){
+        $('#update-record').addClass('show');
+        console.log('update front end');
+
+    });
+    productInfo.on('click','.delete',function(){
+        product.deleteData('POST',this.parentNode.parentNode.firstChild.textContent);
+        console.log('delete front-end');
+    });
     $('#button').on('click',function(){
         var data = $(this).parent().children();
 
