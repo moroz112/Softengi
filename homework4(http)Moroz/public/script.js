@@ -120,7 +120,7 @@ $(function(){
         var nameNew = document.getElementById('nameNew');
         var priceNew = document.getElementById('priceNew');
         var quantityNew = document.getElementById('quantityNew');
-        console.log(this.parentNode.parentNode.firstChild.textContent);
+        console.log('sending id',this.parentNode.parentNode.firstChild.textContent);
         product.updateData('POST',
             idNew.value,nameNew.value,priceNew.value,quantityNew.value,this.parentNode.parentNode.firstChild.textContent);
         console.log('update-record front end');
