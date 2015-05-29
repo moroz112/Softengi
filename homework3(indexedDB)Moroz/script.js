@@ -11,7 +11,6 @@ var newProduct = document.getElementById('button'),
     inputQuantity = document.getElementById('quantity'),
     updateRecordBlock = document.getElementById('update-record'),
     updateRecordButton = document.getElementById('update');
-    ;
     function checkProductField(inputIdValue,inputNameValue,inputPriceValue,inputQuantityValue){
             var regId = /^\d{1,3}$/i;
             var regQuantity = /^\d+$/i;
@@ -48,35 +47,7 @@ var newProduct = document.getElementById('button'),
         productInfo.appendChild(productUpdateCurrentRecord);
         fragment.appendChild(productInfo);
         products.appendChild(fragment);
-        var deleteButtons = document.getElementsByClassName('delete');
-        var updateButtons = document.getElementsByClassName('update');
-        var updateRecordButtons = document.getElementsByClassName('update-record');
-        for(var k=0;k<updateRecordButtons.length;k++){
-            var upRecordButton = updateRecordButtons[k];
-            upRecordButton.addEventListener('click', function(){
-                var idNew = document.getElementById('idNew');
-                var nameNew = document.getElementById('nameNew');
-                var priceNew = document.getElementById('priceNew');
-                var quantityNew = document.getElementById('quantityNew');
-                if(checkProductField(idNew.value,nameNew.value,priceNew.value,quantityNew.value))
-                    updateRecord(
-                        {id:idNew.value, name:nameNew.value,price:priceNew.value,quantity:quantityNew.value,
-                            id:parseInt(this.parentNode.parentNode.firstChild.textContent)});
-            });
 
-        }
-        for(var j = 0; j<updateButtons.length;j++) {
-            var upButton = updateButtons[j];
-            upButton.addEventListener('click', function(){
-                updateRecordBlock.className = 'show';
-            });
-        }
-        for(var i =0;i<deleteButtons.length;i++) {
-            var delButton = deleteButtons[i];
-            delButton.addEventListener('click',function(){
-                deleteProduct(parseInt(this.parentNode.parentNode.firstChild.textContent));
-            });
-        }
     };
 
     var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -155,6 +126,23 @@ var newProduct = document.getElementById('button'),
         });
     }
     newProduct.addEventListener('click',addNewProduct);
+    $('#products').on('click','.delete', function(){
+        deleteProduct(parseInt(this.parentNode.parentNode.firstChild.textContent));
+    });
+    $('#products').on('click','.update',function(){
+        updateRecordBlock.className = 'show';
+    });
+    $('#products').on('click','.update-record', function(){
+        var idNew = document.getElementById('idNew');
+        var nameNew = document.getElementById('nameNew');
+        var priceNew = document.getElementById('priceNew');
+        var quantityNew = document.getElementById('quantityNew');
+        if(checkProductField(idNew.value,nameNew.value,priceNew.value,quantityNew.value))
+            updateRecord(
+                {id:idNew.value, name:nameNew.value,price:priceNew.value,quantity:quantityNew.value,
+                    id:parseInt(this.parentNode.parentNode.firstChild.textContent)});
+    });
     getAllData();
 ;
+
 });
