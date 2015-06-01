@@ -1,7 +1,7 @@
 function Product() {
 }
 Product.prototype.updateData = function(method,id,name,price,quantity,idUpdate) {
-  //var deferer = Q.defer();
+  var deferer = Q.defer();
     $.ajax({
         url: "update",
         method:method,
@@ -13,12 +13,13 @@ Product.prototype.updateData = function(method,id,name,price,quantity,idUpdate) 
             idUpdate: idUpdate
         },
         success: function(result) {
-            console.log('success update result',result);
+            deferer.resolve(result);
         },
         error: function(result) {
-            console.log('error update result', result);
+            deferer.reject(result);
         }
-    })
+    });
+    return deferer.promise;
 };
 Product.prototype.insertData = function(method,arr) {
     this.action = "insert";
@@ -84,11 +85,10 @@ Product.prototype.selectData = function(method) {
         url: 'select',
         method: method,
         success: function(result) {
-            //var s = JSON.parse(result);
             deferer.resolve(result)
         },
         error: function(result) {
-            deferer.reject('select error',result)
+            deferer.reject(result)
         }
     });
     return deferer.promise;
@@ -103,11 +103,9 @@ Product.prototype.deleteData = function(method,id){
         },
         success: function(result) {
             deferer.resolve(result);
-            //console.log('delete success',result);
         },
         error: function(result) {
             deferer.reject(result);
-            //console.log('delete error',result);
         }
 
     });
@@ -135,8 +133,11 @@ $(function(){
         var priceNew = document.getElementById('priceNew');
         var quantityNew = document.getElementById('quantityNew');
         console.log('sending id',this.parentNode.parentNode.firstChild.textContent);
-        product.updateData('POST',
+        var updateProd = product.updateData('POST',
             idNew.value,nameNew.value,priceNew.value,quantityNew.value,this.parentNode.parentNode.firstChild.textContent);
+        updateProd.then(function(result){
+            console.log('update very success',result);
+        }).done();
         console.log('update-record front end');
     });
 
@@ -148,8 +149,7 @@ $(function(){
     productInfo.on('click','.delete',function(){
         var deleteProduct =  product.deleteData('POST',this.parentNode.parentNode.firstChild.textContent);
         deleteProduct.then(function(result){
-            console.log(deleteProduct);
-            console.log('delete front-end');
+            console.log('delete front-end',result);
         }).done();
     });
 

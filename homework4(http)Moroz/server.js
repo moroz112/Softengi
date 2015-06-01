@@ -41,7 +41,7 @@ app.post("/delete", function(req,res){
             if(obj[k].id == req.body.id){
                 obj.splice(k,1);
                 fs.writeFile("goods.json", JSON.stringify(obj));
-                res.send('suchk');
+                res.send('success from nodeJS');
             }
         }
     }
