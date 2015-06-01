@@ -41,6 +41,14 @@ Product.prototype.insertData = function(method,arr) {
     });
     return deferer.promise;
 };
+Product.prototype.checkValue = function checkProductField(inputIdValue,inputNameValue,inputPriceValue,inputQuantityValue){
+    var regId = /^\d{1,3}$/i;
+    var regQuantity = /^\d+$/i;
+    var regName = /^\w+[^0-9](\b\w+$|$)/i;
+    var regPrice = /^\d+($|.\d$)/i;
+    return (regId.test(inputIdValue) && regName.test(inputNameValue) &&
+    regPrice.test(inputPriceValue) && regQuantity.test(inputQuantityValue));
+};
 Product.prototype.drawFunc = function(productIdValue,productNameValue,productPriceValue,productQuantityValue){
     var products = document.getElementById('products'),
         fragment = document.createDocumentFragment(),
@@ -86,6 +94,7 @@ Product.prototype.selectData = function(method) {
     return deferer.promise;
 };
 Product.prototype.deleteData = function(method,id){
+    var deferer = Q.defer();
     $.ajax({
         url:"delete",
         method: method,
@@ -93,27 +102,32 @@ Product.prototype.deleteData = function(method,id){
             id:id
         },
         success: function(result) {
-            console.log('delete success',result);
+            deferer.resolve(result);
+            //console.log('delete success',result);
         },
         error: function(result) {
-            console.log('delete error',result);
+            deferer.reject(result);
+            //console.log('delete error',result);
         }
 
     });
+    return deferer.promise;
 };
-var product = new Product();
-var select = product.selectData('POST');
-select.then(function(result){
-    console.log('select success result',JSON.parse(result));
-    var result = JSON.parse(result);
-    for(var i=0;i<result.length;i++) {
-        console.log(result[i].id);
-        product.drawFunc(result[i].id,result[i].name,result[i].price,result[i].quantity);
-    }
-}).done();
+
 
 
 $(function(){
+    var product = new Product();
+    var select = product.selectData('POST');
+    select.then(function(result){
+        console.log('select success result',JSON.parse(result));
+        var result = JSON.parse(result);
+        for(var i=0;i<result.length;i++) {
+            console.log(result[i].id);
+            product.drawFunc(result[i].id,result[i].name,result[i].price,result[i].quantity);
+        }
+    }).done();
+
     var productInfo = $('#products');
     productInfo.on('click','.update-record',function(){
         var idNew = document.getElementById('idNew');
@@ -125,27 +139,37 @@ $(function(){
             idNew.value,nameNew.value,priceNew.value,quantityNew.value,this.parentNode.parentNode.firstChild.textContent);
         console.log('update-record front end');
     });
+
     productInfo.on('click','.update',function(){
         $('#update-record').addClass('show');
         console.log('update front end');
+    });
 
-    });
     productInfo.on('click','.delete',function(){
-        product.deleteData('POST',this.parentNode.parentNode.firstChild.textContent);
-        console.log('delete front-end');
+        var deleteProduct =  product.deleteData('POST',this.parentNode.parentNode.firstChild.textContent);
+        deleteProduct.then(function(result){
+            console.log(deleteProduct);
+            console.log('delete front-end');
+        }).done();
     });
+
     $('#button').on('click',function(){
         var data = $(this).parent().children();
-
         var arg = [];
         for(var i=0;i<data.length-1; i++) {
             arg.push(data[i].value);
         }
-        var insert = product.insertData('POST',arg);
-        insert.then(function(result){
-            console.log('insert success',result);
-        }).done();
+        console.log(arg);
+        if(product.checkValue(arg[0],arg[1],arg[2],arg[3])) {
+            var insert = product.insertData('POST', arg);
+            insert.then(function(result){
+                console.log('insert success',result);
+            }).done();
+        } else {
+            console.log('NOT VALID');
+        }
     });
+
     var updateButtons = document.getElementsByClassName('update');
     console.log(updateButtons);
 });

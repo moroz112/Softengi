@@ -63,6 +63,7 @@ app.post("/select", function(req, res) {
         res.send(fs.readFileSync("goods.json").toString());
     }
     else {
+        fs.writeFile('goods.json','[]');
         res.send("Not found goods");
     }
 });
