@@ -23,8 +23,8 @@ jasmine.addReporter(new consoleReporter.ConsoleReporter({
         //console.log(str);
     }
 }));
-var str = "02068, г. Киев, ул. Анны Ахматовой, д. 14б";
-var reg = /,/;
-console.log( a.addr(str,reg));
+var str = "02068, г. Киев, д. 12а";
+
+console.log( a.addr(str));
 describe('check function', a.test);
 jasmine.execute();
