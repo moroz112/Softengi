@@ -1,0 +1,10 @@
+{
+    "static": {
+        "css": "./assets/css/",
+        "js": "./assets/js/",
+        "html": "./assets/html/"
+    },
+    "server": {
+        "port": 3000
+    }
+}

@@ -1,0 +1,17 @@
+body {
+	margin: 0;
+}
+
+#mainDiv {	
+	margin-top: 40px;
+	margin-left:   50px;
+}
+
+.sourceDiv {
+	float: left;
+}
+
+.resultDiv {
+	float: left;
+	margin-left: 50px;
+}
