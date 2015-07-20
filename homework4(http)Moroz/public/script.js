@@ -111,11 +111,22 @@ Product.prototype.deleteData = function(method,id){
     });
     return deferer.promise;
 };
-
+Product.prototype.tryModule = (function(){
+   var basket = [];
+    return {
+        addItem: function(item) {
+            basket.push(item);
+        },
+        getItemLength: function() {
+            alert(basket.length);
+        }
+    }
+}());
 
 
 $(function(){
     var product = new Product();
+    product.tryModule.addItem('2');
     var select = product.selectData('POST');
     select.then(function(result){
         console.log('select success result',JSON.parse(result));
