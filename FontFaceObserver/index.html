@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <script src="fontfaceobserver.js"></script>
+    <script>
+        var Lobster = new FontFaceObserver('Lobster', {});
+        Lobster.check().then(function(){
+            document.documentElement.className += "lobster";
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial,sans-serif;
+            font-size: 50px;
+        }
+        .lobster body {
+            font-family: Lobster,sans-serif;
+        }
+    </style>
+</head>
+<body>
+<p>
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+    Lorem ipsum
+</p>
+</body>
+</html>

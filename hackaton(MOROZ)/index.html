@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/script.js"></script>
+</head>
+<body>
+    <div class="grid">
+        <h1>you can't send requests if you no login</h1>
+        <!--<div class="some-data">-->
+            <!--<h1>data</h1>-->
+        <!--</div>-->
+        <div class="set-voutings block">
+            <input class="title-voute" type="text" placeholder="create voute title">
+            <input class="description-voute" type="text" placeholder="create voute description">
+            <input class="create-vouting" type="button" value="Create vouting">
+        </div>
+        <h2>LOGIN start</h2>
+        <hr/>
+        <form class="forma">
+            <input class="password" type="password" placeholder="password">
+            <input class="login" type="login" placeholder="login">
+            <input type="button" class="autorization" value="send">
+        </form>
+        <hr/>
+        <h2>LOGIN end</h2>
+        <div>
+            <input class="get-all-voutes block" type="button" value="Get all voutes">
+            <h1>Tables with result</h1>
+        </div>
+        <table id="products" class="block">
+            <tr class="product-info">
+                <td class="key">Voutes key</td>
+                <td class="product-id">Description of voute</td>
+                <td class="product-name">Voutes title</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
