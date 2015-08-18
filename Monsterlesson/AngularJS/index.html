@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div ng-controller="parent as parent">
+        <div ng-controller="child as child">
+            {{child.name}}
+        </div>
+        <div Foo="ololo"></div>
+    </div>
+</body>
+</html>
