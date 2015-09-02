@@ -7,6 +7,13 @@ app.controller('parent', function($scope){
 });
 app.controller('child', function(){
     this.name = 'child';
+    this.obj = [
+        {name:'product1', price: '$411'},
+        {name:'product2', price: '422$'},
+        {name:'product3', price: '433'}
+    ]
+
+
 });
 app.directive('foo', function(){
    return {
@@ -15,5 +22,22 @@ app.directive('foo', function(){
            console.log(scope.name)
        },
        template: '<p></p>'
+   }
+});
+app.filter('moneyFilter',function(){
+   return function(str){
+       var lastChar = str.slice(-1),
+           firstChar = str.slice(0,1),
+           truePart;
+       if(lastChar == '$') {
+           truePart = str.slice(0,str.length -1);
+       }
+       else if(firstChar == '$') {
+           truePart = str.slice(1);
+       }
+       else {
+           truePart = str;
+       }
+       return '$' + truePart;
    }
 });

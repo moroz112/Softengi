@@ -44,5 +44,6 @@ $(function(){
       $('.main').addClass('disable');
       $('.login').removeClass('disable');
       $.removeCookie('login');
+      2220335016936
    });
 });

@@ -9,7 +9,12 @@
 <body>
     <div ng-controller="parent as parent">
         <div ng-controller="child as child">
-            {{child.name}}
+            <li ng-repeat="name in child.obj">
+                {{name.price | moneyFilter}}
+            </li>
+            <li ng-repeat="price in child.obj">
+                {{price.name}}
+            </li>
         </div>
         <div Foo="ololo"></div>
     </div>
