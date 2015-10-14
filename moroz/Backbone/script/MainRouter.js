@@ -3,8 +3,8 @@
  */
 define(
     'MainRouter',
-    ['MainView','jquery','backbone'],
-    function(View,$,Backbone) {
+    ['MainView','jquery','backbone','FirstView','SecondView','LastView'],
+    function(View,$,Backbone,First,Second,Last) {
         return Backbone.Router.extend({
 
             routes: {
@@ -13,13 +13,15 @@ define(
                 "last" : "lastPage"
             },
             firstPage: function () {
-
+                this.firstview = new First();
             },
             secondPage: function () {
-
+                this.secondview = new Second();
+                this.secondview.render();
             },
             lastPage: function () {
-
+                this.lastview = new Last();
+                this.lastview.render();
             }
         });
     }

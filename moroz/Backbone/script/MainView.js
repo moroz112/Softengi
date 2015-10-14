@@ -7,7 +7,7 @@ define(
     function($,Backbone,Model,temp) {
         return Backbone.View.extend({
             tagname: 'div',
-            className: 'first-view',
+            className: 'main-view',
             events: {
             "click .button": "change"
             },
@@ -17,7 +17,6 @@ define(
             },
             initialize: function() {
                 console.log('view created');
-                this.render();
             },
             change: function(){
               console.log('event from view works');
