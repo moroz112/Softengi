@@ -12,6 +12,7 @@ function address(str) {
     var obj = {indeks:false,city:false,street:false,building:false};
     for(var i =0; i<adr.length; i++) {
         if(adr[i].match(regIndex)) {
+
             obj.indeks = adr[i].trim()
         }
         if(adr[i].match(regCity)) {
