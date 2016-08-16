@@ -13,6 +13,7 @@ function address(str) {
     for(var i =0; i<adr.length; i++) {
         if(adr[i].match(regIndex)) {
 
+
             obj.indeks = adr[i].trim()
         }
         if(adr[i].match(regCity)) {
