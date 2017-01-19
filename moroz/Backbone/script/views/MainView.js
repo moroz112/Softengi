@@ -2,8 +2,7 @@
  * Created by amoroz-prom on 11.10.15.
  */
 define(
-    'MainView',
-    ['jquery','backbone','MainModel','text!template/temp.html'],
+    ['../jquery','backbone','model/MainModel','text!template/temp.html'],
     function($,Backbone,Model,temp) {
         return Backbone.View.extend({
             tagname: 'div',

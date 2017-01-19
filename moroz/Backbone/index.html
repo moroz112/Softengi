@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="script/underscore.js"></script>
-    <script src="script/text.js"></script>
     <script src="script/jquery.js"></script>
     <script src="script/backbone.js"></script>
     <script data-main="script/app" src="script/require.js"></script>
+    <script>
+        require.config = ({
+            paths: {
+                baseUrl: "./script"
+            },
+            deps: ['text']
+        });
+    </script>
+    <!--<script src="script/text.js"></script>-->
 </head>
 <body>
     <nav>
         <li><a href="#">Main</a></li>
-        <li><a href="#second">second</a></li>
+        <li><a href="#second/myId">second</a></li>
         <li><a href="#last">last</a></li>
     </nav>
     <div id="app-content">

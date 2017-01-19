@@ -2,8 +2,7 @@
  * Created by AMoroz on 10/14/2015.
  */
 define(
-    'FirstView',
-    ['MainView','backbone','jquery','text!template/firstviewtemp.html'],
+    ['views/MainView','backbone','jquery','text!template/firstviewtemp.html'],
     function(Parent,Backbone,$,temp) {
         return Parent.extend({
             tagName: 'div',
